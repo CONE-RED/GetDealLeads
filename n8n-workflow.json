@@ -1,0 +1,159 @@
+{
+  "name": "GetDeal.ai Investor Qualification Workflow",
+  "nodes": [
+    {
+      "parameters": {
+        "path": "getdeal-qualifier",
+        "httpMethod": "POST",
+        "responseMode": "responseNode",
+        "options": {
+          "rawBody": false,
+          "allowedOrigins": "*",
+          "corsOptions": {
+            "origin": "*",
+            "credentials": false,
+            "methods": "GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS",
+            "headers": "Access-Control-Allow-Origin,Access-Control-Allow-Methods,Access-Control-Allow-Headers,Content-Type"
+          }
+        }
+      },
+      "id": "a6c1d2e0-1234-4321-9876-123456789abc",
+      "name": "Webhook Trigger",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [240, 300],
+      "webhookId": "getdeal-qualifier"
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "YOUR_GOOGLE_SHEET_ID_HERE",
+          "mode": "id"
+        },
+        "sheetName": "Sheet1",
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "timestamp": "={{ $json.timestamp }}",
+            "name": "={{ $json.name }}",
+            "email": "={{ $json.email }}",
+            "organization": "={{ $json.organization }}",
+            "role": "={{ $json.role }}",
+            "focus": "={{ $json.focus }}",
+            "checkSize": "={{ $json.checkSize }}",
+            "analysis": "={{ $json.services.analysis }}",
+            "dealFlow": "={{ $json.services.dealFlow }}",
+            "teamAcquisition": "={{ $json.services.teamAcquisition }}",
+            "portfolioSynergy": "={{ $json.services.portfolioSynergy }}",
+            "syndication": "={{ $json.services.syndication }}",
+            "startupUrl": "={{ $json.startupUrl }}",
+            "challenge": "={{ $json.challenge }}",
+            "source": "={{ $json.source }}"
+          }
+        },
+        "options": {
+          "cellFormat": "USER_ENTERED"
+        }
+      },
+      "id": "b7d2e3f0-2345-5432-a987-234567890bcd",
+      "name": "Google Sheets",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4,
+      "position": [460, 300],
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "YOUR_GOOGLE_SHEETS_CREDENTIAL_ID",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "sendTo": "={{ $json.email }}",
+        "subject": "🎉 Welcome to GetDeal.ai Early Access - Your 50% Discount Inside",
+        "emailType": "html",
+        "message": "<!DOCTYPE html><html><head><style>body{font-family:Arial,sans-serif;line-height:1.6;color:#333;max-width:600px;margin:0 auto;padding:20px}.header{background:linear-gradient(135deg,#10B981,#3B82F6);color:white;padding:30px;text-align:center;border-radius:8px 8px 0 0}.logo{font-size:28px;font-weight:bold;margin-bottom:10px}.benefits{background:#F0FDF4;padding:20px;border-left:4px solid #10B981;margin:20px 0}.benefit-item{margin:10px 0;padding:8px 0}.discount-code{background:#FEF3C7;border:2px dashed #F59E0B;padding:20px;text-align:center;margin:20px 0;border-radius:8px}.code{font-size:24px;font-weight:bold;color:#D97706;background:white;padding:10px;border-radius:4px;display:inline-block}.next-steps{background:#F9FAFB;padding:20px;border-radius:8px;margin:20px 0}.step{margin:10px 0;padding:5px 0}.footer{background:#1F2937;color:#9CA3AF;padding:20px;text-align:center;border-radius:0 0 8px 8px;margin-top:20px}</style></head><body><div class=\"header\"><div class=\"logo\">GetDeal.ai</div><h1>Welcome to Early Access!</h1><p>You're now part of an exclusive group of 200+ forward-thinking investors</p></div><p>Hi {{ $json.name }},</p><p>Congratulations! You're now part of an exclusive group of early adopters who get incredible benefits.</p><div class=\"benefits\"><h2>🎯 Your Exclusive Benefits</h2><div class=\"benefit-item\">✅ <strong>50% OFF all analysis services for 1 year</strong></div><div class=\"benefit-item\">✅ Priority access to qualified deal flow</div><div class=\"benefit-item\">✅ Team acquisition matching service</div>{{#if $json.services.teamAcquisition}}<div class=\"benefit-item\">🚀 <strong>Since you're interested in team acquisition, we'll start identifying potential teams for you. Expect recommendations within 2 weeks.</strong></div>{{/if}}</div><div class=\"discount-code\"><h3>Your Exclusive Discount Code</h3><div class=\"code\">EARLY50</div><p style=\"color:#92400E;font-size:14px;\">Use this code for 50% off all services for 1 year</p></div>{{#if $json.startupUrl}}<div class=\"benefits\"><h3>🔬 Free Sample Analysis</h3><p>We received your request to analyze: <strong>{{ $json.startupUrl }}</strong></p><p>We'll send you a comprehensive light analysis report within 48 hours.</p></div>{{/if}}<div class=\"next-steps\"><h3>📅 Next Steps</h3><div class=\"step\">1. <strong>Book your personalized demo:</strong> <a href=\"#\">Schedule here</a></div><div class=\"step\">2. <strong>Join our Slack community:</strong> <a href=\"#\">Get invite</a></div><div class=\"step\">3. <strong>Start using your benefits:</strong> <a href=\"#\">Access dashboard</a></div></div>{{#if $json.challenge}}<div class=\"benefits\"><h3>💡 Your Challenge</h3><p>You mentioned: \"{{ $json.challenge }}\"</p><p>Our team will prepare personalized recommendations to address this specific challenge during your demo.</p></div>{{/if}}<p>Questions? Just reply to this email or reach me directly at <a href=\"mailto:alex@getdeal.ai\">alex@getdeal.ai</a></p><p>Looking forward to helping you discover your next unicorn! 🦄</p><p>Best,<br>Alex<br>GetDeal.ai Team</p><div class=\"footer\"><p>P.S. Your early feedback shapes our product. We'd love to hear what features you need most!</p><p>GetDeal.ai | Turning AI into Investment Alpha</p></div></body></html>",
+        "options": {
+          "allowUnauthorizedCerts": false,
+          "ccEmails": "alex@getdeal.ai"
+        }
+      },
+      "id": "c8e3f4g0-3456-6543-ba98-345678901cde",
+      "name": "Send Welcome Email",
+      "type": "n8n-nodes-base.emailSend",
+      "typeVersion": 2,
+      "position": [680, 300],
+      "credentials": {
+        "smtp": {
+          "id": "YOUR_SMTP_CREDENTIAL_ID",
+          "name": "SMTP account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "{\n  \"success\": true,\n  \"message\": \"Thank you for joining GetDeal.ai early access! Check your email for confirmation and next steps.\",\n  \"timestamp\": \"{{ new Date().toISOString() }}\"\n}"
+      },
+      "id": "d9f4g5h0-4567-7654-cb09-456789012def",
+      "name": "Success Response",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1,
+      "position": [900, 300]
+    }
+  ],
+  "connections": {
+    "Webhook Trigger": {
+      "main": [
+        [
+          {
+            "node": "Google Sheets",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Sheets": {
+      "main": [
+        [
+          {
+            "node": "Send Welcome Email",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Send Welcome Email": {
+      "main": [
+        [
+          {
+            "node": "Success Response",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "1",
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "id": "GetDealAI_Investor_Qualification",
+  "tags": [
+    {
+      "createdAt": "2024-01-01T00:00:00.000Z",
+      "updatedAt": "2024-01-01T00:00:00.000Z",
+      "id": "lead-generation",
+      "name": "Lead Generation"
+    }
+  ]
+}
