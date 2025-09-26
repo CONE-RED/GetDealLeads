@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GetDeal.ai - Unlock Early Access in 3 Steps</title>
+    <link rel="icon" type="image/svg+xml" href="graph.svg">
     <style>
         * {
             margin: 0;
@@ -697,8 +698,8 @@
         async function submitForm() {
             // Collect all form data
             const formData = {
-                timestamp: new Date().toISOString(),
-                source: 'qr_code_lead',
+                timestamp: formatTimestamp(new Date()),
+                source: 'Unicorn_Factory_QR',
                 
                 // Step 1
                 name: document.getElementById('name').value,
@@ -748,6 +749,16 @@
                 // Fallback: store locally for debugging
                 localStorage.setItem('getdeal_lead_' + Date.now(), JSON.stringify(formData));
             }
+        }
+        
+        // Format timestamp as DD MMM YYYY
+        function formatTimestamp(date) {
+            const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
+                          'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+            const day = date.getDate().toString().padStart(2, '0');
+            const month = months[date.getMonth()];
+            const year = date.getFullYear();
+            return `${day} ${month} ${year}`;
         }
         
         // Initialize
