@@ -13,8 +13,9 @@
         }
         
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            background: linear-gradient(135deg, #0F172A 0%, #1E293B 100%);
+            font-family: 'SF Pro Text', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #FFFFFF url('background.jpeg') no-repeat center center fixed;
+            background-size: cover;
             min-height: 100vh;
             padding: 20px;
             color: #1F2937;
@@ -27,7 +28,7 @@
         
         .header {
             text-align: center;
-            color: white;
+            color: #1F2937;
             margin-bottom: 30px;
             padding-top: 20px;
         }
@@ -43,8 +44,9 @@
         .logo {
             font-size: 32px;
             font-weight: bold;
-            background: linear-gradient(90deg, #10B981, #3B82F6);
+            background: linear-gradient(90deg, #9333EA, #3B82F6);
             -webkit-background-clip: text;
+            background-clip: text;
             -webkit-text-fill-color: transparent;
         }
         
@@ -62,7 +64,8 @@
         
         /* Progress Bar */
         .progress-container {
-            background: rgba(255,255,255,0.1);
+            background: #F8FAFC;
+            border: 1px solid #E5E7EB;
             border-radius: 20px;
             padding: 12px 20px 20px 20px;
             margin-bottom: 30px;
@@ -76,25 +79,25 @@
         .progress-step {
             flex: 1;
             height: 8px;
-            background: rgba(255,255,255,0.2);
+            background: #E5E7EB;
             border-radius: 50px;
             transition: all 0.3s;
             position: relative;
         }
         
         .progress-step.active {
-            background: linear-gradient(90deg, #10B981, #3B82F6);
+            background: linear-gradient(90deg, #9333EA, #3B82F6);
         }
         
         .progress-step.completed {
-            background: #10B981;
+            background: #9333EA;
         }
         
         .step-indicators {
             display: flex;
             justify-content: space-between;
             margin-top: 10px;
-            color: white;
+            color: #6B7280;
             font-size: 12px;
         }
         
@@ -113,7 +116,8 @@
             width: 20px;
             height: 20px;
             border-radius: 50%;
-            background: rgba(255,255,255,0.2);
+            background: #E5E7EB;
+            color: #6B7280;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -121,36 +125,39 @@
         }
         
         .step-indicator.active .icon {
-            background: linear-gradient(90deg, #10B981, #3B82F6);
+            background: linear-gradient(90deg, #9333EA, #3B82F6);
+            color: white;
         }
         
         .step-indicator.completed .icon {
-            background: #10B981;
+            background: #9333EA;
+            color: white;
         }
         
         /* Benefit Banner */
         .benefit-banner {
-            background: linear-gradient(90deg, #10B981, #3B82F6);
+            background: linear-gradient(90deg, #9333EA, #3B82F6);
             padding: 2px;
             border-radius: 12px;
             margin-bottom: 20px;
         }
         
         .benefit-content {
-            background: #0F172A;
+            background: #FFFFFF;
             border-radius: 10px;
             padding: 20px;
+            border: 1px solid #E5E7EB;
         }
         
         .benefit-content h2 {
-            color: white;
+            color: #1F2937;
             font-size: 18px;
             margin-bottom: 15px;
             text-align: center;
         }
         
         .benefit-list {
-            color: #94A3B8;
+            color: #4B5563;
             font-size: 14px;
             line-height: 1.8;
         }
@@ -165,7 +172,8 @@
             background: white;
             border-radius: 16px;
             padding: 30px;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.1);
+            border: 1px solid #E5E7EB;
         }
         
         .step-header {
@@ -178,7 +186,7 @@
         .step-number {
             width: 32px;
             height: 32px;
-            background: linear-gradient(135deg, #10B981, #3B82F6);
+            background: linear-gradient(135deg, #9333EA, #3B82F6);
             color: white;
             border-radius: 50%;
             display: flex;
@@ -275,15 +283,15 @@
         }
         
         .instant-analysis-box {
-            background: #F0FDF4;
-            border: 2px dashed #10B981;
+            background: #F8F4FF;
+            border: 2px dashed #9333EA;
             border-radius: 8px;
             padding: 20px;
             margin: 20px 0;
         }
         
         .instant-analysis-box h4 {
-            color: #10B981;
+            color: #9333EA;
             font-size: 14px;
             margin-bottom: 10px;
             font-weight: 600;
@@ -299,7 +307,7 @@
         .instant-analysis-box input {
             width: 100%;
             padding: 10px;
-            border: 1px solid #10B981;
+            border: 1px solid #9333EA;
             border-radius: 6px;
             font-size: 14px;
         }
@@ -327,7 +335,7 @@
         }
         
         .btn-primary {
-            background: linear-gradient(135deg, #10B981, #3B82F6);
+            background: linear-gradient(135deg, #9333EA, #3B82F6);
             color: white;
         }
         
@@ -359,7 +367,7 @@
         }
         
         .final-message h2 {
-            color: #10B981;
+            color: #9333EA;
             font-size: 24px;
             margin-bottom: 15px;
         }
